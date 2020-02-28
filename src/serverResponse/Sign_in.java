@@ -58,6 +58,7 @@ public class Sign_in extends HttpServlet {
 			String userpassword_input=request.getParameter("user_password");
 			String get_pwd = "select * from user where user_name=\"" + username_input+ "\""+"or "+"user_e_mail=\"" + username_input+ "\";";
 			ResultSet rs = statement.executeQuery(get_pwd);
+
 			if(rs.next()==false||!(rs.getString("user_password")).equals(userpassword_input)) {
 				out.println("ERR");
 				out.println(rs.getString("user_password"));

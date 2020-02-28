@@ -64,9 +64,9 @@ public class sign_up extends HttpServlet {
 					
 			String test_duplicate= "select * from user where user_name=\""+user_name+"\";";
 			ResultSet rs=statement.executeQuery(test_duplicate);
-			if(!rs.next()) {
-				out.println("DUPLICATE_USER_ERROR");
-				throw new Exception();
+			if(rs.next()) {
+				
+				out.println("ERR");
 			}//检查用户是否已经存在
 			else{
 				String sql_command="insert into user(user_name,user_password,user_nick_name,user_e_mail,register_time,administrator_of,member_of,event_participated_in,telephone_number,university_no) values("
@@ -78,11 +78,11 @@ public class sign_up extends HttpServlet {
 					+"\","
 					+"\""+user_e_mail
 					+"\","
-					+"NOW(),\";\",\";\",\";\""
+					+"NOW(),\";\",\";\",\";\","
 					+"\""+user_telephone
 					+"\","
 					+"\""+user_university_no
-					+"\","
+					+"\""
 					+ ");";
 			System.out.println(sql_command);
 			connection.createStatement().executeUpdate(sql_command);
